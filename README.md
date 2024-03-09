@@ -52,6 +52,45 @@ Strategi greedy yang kami terapkan adalah Greedy by Most Profitable Diamond with
 |  3 |  Docker desktop  |
 
 ## Menjalankan Program
+1. Clone repository ini
+   ```
+   https://github.com/kaylanamira/Tubes1_Snoopy.git
+   ```
+2. Buka folder repository pada terminal
+3. Pindah ke direktori _src_ dengan `cd src`
+4. Pindah ke direktori _tubes1-IF2211-game-engine-1.1.0_ dengan `cd tubes1-IF2211-game-engine-1.1.0`
+5. Install dependencies dengan `yarn`
+6. Setup default environment variable dengan menjalankan script (untuk Windows)
+   ```
+   ./scripts/copy-env.bat`
+   ```
+   (untuk Linux/MacOS)
+   ```
+   chmod +x ./scripts/copy-env.sh
+   ./scripts/copy-env.sh
+   ```
+7. Buka aplikasi docker desktop kemudian lakukan setup local database dengan `docker compose up -d database`
+8. Jalankan perintah (untuk Windows)
+   ```
+   ./scripts/setup-db-prisma.bat
+   ```
+   (untuk Linux/MacOS)
+   ```
+   chmod +x ./scripts/setup-db-prisma.sh
+   ./scripts/setup-db-prisma.sh
+   ```
+9. Jalankan perintah `npm run build` dan `npm run start` pada terminal
+10. Klik link localhost yang diberikan di output command dan buka game etimo diamond di platform yang diinginkan
+11. Pindah ke direktori _tubes1-IF2211-bot-starter-pack-1.0.1/_ dengan `cd ../tubes1-IF2211-bot-starter-pack-1.0.1/`
+12. Install dependencies dengan perintah `pip install -r requirements.txt`
+13. Jalankan perintah untuk menjalankan beberapa bot (untuk Windows)
+   ```
+   ./run-bots.bat
+   ```
+   (untuk Linux/MacOS)
+   ```
+   ./run-bots.sh
+   ```
 
 ## Pembuat Program
 |        Name             |    NIM   | Kelas |
