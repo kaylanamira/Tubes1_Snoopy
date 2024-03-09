@@ -8,12 +8,30 @@ from game.bot_handler import BotHandler
 from game.logic.random import RandomLogic
 from game.util import *
 from game.logic.base import BaseLogic
+from game.logic.dpa import DPALogic
+from game.logic.defense import DefensiveLogic
+from game.logic.attackProfit import AttackProfitLogic
+from game.logic.nearestBase import NearestBaseLogic
+from game.logic.nearestBaseDef import NearestBaseDefLogic
+from game.logic.mostProfitable import ProfitLogic
+from game.logic.defenseProfit1 import DefensiveProfitLogic1
+from game.logic.defenseProfit2 import DefensiveProfitLogic2
+from game.logic.defenseProfit3 import DefensiveProfitLogic3
 
 init()
 BASE_URL = "http://localhost:3000/api"
 DEFAULT_BOARD_ID = 1
 CONTROLLERS = {
     "Random": RandomLogic,
+    "DPA": DPALogic,
+    "Defense": DefensiveLogic,
+    "AttackProfit": AttackProfitLogic,
+    "NBase": NearestBaseLogic,
+    "NBaseDef": NearestBaseDefLogic,
+    "Profit": ProfitLogic,
+    "DefenseProfit1": DefensiveProfitLogic1,
+    "DefenseProfit2": DefensiveProfitLogic2,
+    "DefenseProfit3": DefensiveProfitLogic3
 }
 
 ###############################################################################

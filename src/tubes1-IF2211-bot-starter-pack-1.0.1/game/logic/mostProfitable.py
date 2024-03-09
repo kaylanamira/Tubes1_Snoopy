@@ -1,11 +1,11 @@
-import random
 from typing import Tuple, Optional, List
 from math import dist,inf
 from game.logic.base import BaseLogic
 from game.models import GameObject, Board, Position
 from ..util import *
 
-class DiamondFromBotLogic(BaseLogic):
+# enemy nonactive
+class ProfitLogic(BaseLogic):
     def __init__(self):
         self.directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
         self.goal_position: Optional[Position] = None
@@ -15,7 +15,7 @@ class DiamondFromBotLogic(BaseLogic):
     def next_move(self, board_bot: GameObject, board: Board) -> Tuple[int, int]:
         props = board_bot.properties
 
-        if props.diamonds >= 5: 
+        if props.diamonds >= 4 and board_bot.position!=board_bot.properties.base: 
             # Move to base if inventory full
             base = board_bot.properties.base
             self.goal_position = base
@@ -60,35 +60,13 @@ class DiamondFromBotLogic(BaseLogic):
         # Find the nearest diamond with most profit
         maxProfit = 0
         for diamond in diamonds:
-            nearestEnemy = min(bots, key=lambda x: self.calculateDistance(x.position,diamond.position)) # nearest enemy from diamond, x = enemy
+            nearestEnemy = min(bots, key=lambda x: self.calculateDistance(x.position,diamond.position)) # nearest enemy from diamond
             distToBot = self.calculateDistance(bot.position,diamond.position)
             distToBase = self.calculateDistance(bot.properties.base,diamond.position)
             distToEnemy = self.calculateDistance(nearestEnemy.position,diamond.position)
-            profit = (diamond.properties.points)/(distToBot + (distToBase))
-
-            print(profit)
-            print()
+            profit = (distToEnemy + diamond.properties.points)/(distToBot + distToBase)
             
             if (profit >= maxProfit):
                 selectedDiamond = diamond
                 maxProfit = profit
         return selectedDiamond
-
-    def getNearestDiamond(self, bot: GameObject, diamonds: List[GameObject]) -> GameObject:
-        # Find the nearest diamond with biggest point
-        minDistance = inf #infinity
-        redDiamondExist = False
-        minRedDistance = inf
-        for diamond in diamonds:
-            if (redDiamondExist and diamond.properties.points == 1):
-                # Prioritize choosing the red diamond 
-                continue
-            distToBot = self.calculateDistance(bot.position,diamond.position)
-            if (diamond.properties.points == 2 and not redDiamondExist):  #indicates the finding of first diamond
-                # First red diamond found
-                redDiamondExist = True
-                minRedDistance = distToBot
-            if (distToBot <= minDistance or (redDiamondExist and distToBot <= minRedDistance)):
-                minDistance = distToBot
-                nearestDiamond = diamond
-        return nearestDiamond

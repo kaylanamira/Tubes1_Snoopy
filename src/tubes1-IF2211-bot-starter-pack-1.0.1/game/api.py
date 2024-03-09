@@ -6,7 +6,7 @@ import requests
 from colorama import Back, Fore, Style, init
 from dacite import from_dict
 from decode import decode
-from game.models import Board, Bot
+from game.models import Board, Bot, GameObject
 from requests import Response
 
 

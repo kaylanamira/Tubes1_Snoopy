@@ -5,7 +5,7 @@ from game.logic.base import BaseLogic
 from game.models import GameObject, Board, Position
 from ..util import get_direction
 
-class defensiveBot(BaseLogic):
+class DefensiveLogic(BaseLogic):
     def __init__(self):
         self.directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
         self.goal_position: Optional[Position] = None
@@ -13,9 +13,8 @@ class defensiveBot(BaseLogic):
 
     def next_move(self, board_bot: GameObject, board: Board):
         props = board_bot.properties
-        # Analyze new state
+        
         if props.diamonds == 5:
-            # Move to base
             base = board_bot.properties.base
             self.goal_position = base
             print("Moving to base")
